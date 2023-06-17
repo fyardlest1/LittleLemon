@@ -18,23 +18,28 @@ class MenuItemView(ListCreateAPIView):
     filterset_fields = ['price', 'inventory']
     search_fields = ['title']
 
-    # def get_permissions(self):
-    #     if (self.request.method == 'GET'):
-    #         return []
-    #     return [IsAdminUser()]
+    def get_permissions(self):
+        permission_classes = []
+        if self.request.method != 'GET':
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
 
 
 class SingleMenuItemView(RetrieveUpdateAPIView, DestroyAPIView ):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
-    # def get_permissions(self):
-    #     if (self.request.method == 'GET'):
-    #         return []
-    #     return [IsAdminUser()]
+    def get_permissions(self):
+        permission_classes = []
+        if self.request.method != 'GET':
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
+
 
 class BookingViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
-    # permission_classes = [IsAuthenticated]
 

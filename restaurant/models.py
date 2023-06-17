@@ -7,13 +7,13 @@ class Booking(models.Model):
     booking_date = models.DateField()
 
     def __str__(self):
-        return self.first_name
+        return f'{self.first_name} - Guests: {self.no_of_guests}'
 
 
 class Menu(models.Model):
-    title = models.CharField(max_length=200)
-    price = models.IntegerField(null=False)
-    inventory = models.TextField(max_length=1000, default="")
+    title = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    inventory = models.SmallIntegerField(default=0)
 
     def __str__(self):
-        return self.title
+        return f'{self.title} : {str(self.price)}'
