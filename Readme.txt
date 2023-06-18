@@ -1,3 +1,9 @@
+To clone this project:
+- git clone https://github.com/fyardlest1/LittleLemon.git
+- python -m venv venv
+- next activate the virtual environment
+- next, install the requirements.txt file: pip install -r requirements.txt 
+
 Note: to create, update, and delete items you need to provide the admin token.
 So you must create a superuser to make these operations.
 
